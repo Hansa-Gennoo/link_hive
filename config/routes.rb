@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :landing_page, only: [:create, :edit, :destroy] do
+  resources :landing_page, only: [:show] do
     resources :link
   end
 end
