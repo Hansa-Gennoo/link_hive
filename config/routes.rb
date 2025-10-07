@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :dashboard do
+    get 'links/index'
+    get 'links/new'
+    get 'links/create'
+    get 'links/edit'
+    get 'links/update'
+    get 'links/destroy'
+    get 'landing_pages/edit'
+    get 'landing_pages/update'
+  end
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,6 +19,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/u/:id', to: 'landing_pages#show', as: :landing_page
+  get '/u/:id', to: 'landing_pages#show', as: :landing_page_public
 
 end
