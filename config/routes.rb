@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  get 'themes/show'
-  get 'themes/new'
-  get 'themes/create'
-  get 'themes/edit'
-  get 'themes/update'
-  get 'themes/destroy'
+
   namespace :dashboard do
     resources :links
-    resources :landing_pages, only: [:edit, :update]
+    resources :landing_pages, only: [:show, :edit, :update]
   end
   resources :themes
   devise_for :users
-  root to: "pages#home"
+  root to: "landing_pages#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,6 +15,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/u/:id', to: 'landing_pages#show', as: :landing_page_public
+  get '/u/:username', to: 'landing_pages#show', as: :user_page
 
 end
