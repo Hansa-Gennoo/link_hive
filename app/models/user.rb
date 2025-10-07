@@ -5,5 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :landing_page
-  has_many :links
+  has_many :links, dependent: :destroy
+
+  validates :email, presence: true
+  validates :password, presence: true
 end
