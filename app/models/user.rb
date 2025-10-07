@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :landing_page
-  has_many :links, dependent: :destroy
+  has_one :landing_page, dependent: :destroy
 
   validates :email, presence: true
   validates :password, presence: true
