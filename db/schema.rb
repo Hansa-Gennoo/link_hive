@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_06_173255) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_07_071714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "landing_pages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "username"
+    t.text "bio"
+    t.string "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_landing_pages_on_user_id"
+    t.index ["username"], name: "index_landing_pages_on_username", unique: true
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "url"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "name"
+    t.string "key"
+    t.boolean "base"
+    t.string "primary_colour"
+    t.string "accent_colour"
+    t.string "background_colour"
+    t.string "font_heading"
+    t.string "font_body"
+    t.boolean "customisable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_themes_on_key"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +62,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_06_173255) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "landing_pages", "users"
+  add_foreign_key "links", "users"
 end
