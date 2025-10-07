@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   namespace :dashboard do
-    get 'links/index'
-    get 'links/new'
-    get 'links/create'
-    get 'links/edit'
-    get 'links/update'
-    get 'links/destroy'
-    get 'landing_pages/edit'
-    get 'landing_pages/update'
+    resources :links
+    resources :landing_pages, only: [:edit, :update]
   end
   devise_for :users
   root to: "pages#home"

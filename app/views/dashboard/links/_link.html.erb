@@ -1,0 +1,10 @@
+<div class="link-form">
+  <%= simple_form_for [:dashboard, @link] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :url %>
+    <%= f.input :position %>
+    <div class="save-btn">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
