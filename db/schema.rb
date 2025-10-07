@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_07_175238) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_07_202351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,11 +29,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_07_175238) do
     t.bigint "user_id", null: false
     t.string "username"
     t.text "bio"
-    t.string "theme"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "theme_id", null: false
     t.index ["slug"], name: "index_landing_pages_on_slug", unique: true
+    t.index ["theme_id"], name: "index_landing_pages_on_theme_id"
     t.index ["user_id"], name: "index_landing_pages_on_user_id"
     t.index ["username"], name: "index_landing_pages_on_username", unique: true
   end
@@ -75,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_07_175238) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "landing_pages", "themes"
   add_foreign_key "landing_pages", "users"
   add_foreign_key "links", "landing_pages"
 end
