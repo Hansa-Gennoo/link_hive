@@ -1,7 +1,7 @@
 class LandingPagesController < ApplicationController
 
   def show
-     @landing_page = LandingPage.find[:params_id]
+     @landing_page = LandingPage.friendly.find(params[:id])
 
   end
 
