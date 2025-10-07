@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  get 'themes/show'
+  get 'themes/new'
+  get 'themes/create'
+  get 'themes/edit'
+  get 'themes/update'
+  get 'themes/destroy'
   namespace :dashboard do
     resources :links
     resources :landing_pages, only: [:edit, :update]
   end
+  resources :themes
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
