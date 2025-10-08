@@ -1,5 +1,9 @@
 class LandingPagesController < ApplicationController
 
+  def index
+    # This can later render a marketing homepage, sign-up CTA, etc.
+  end
+
  def show
     @user = User.find_by(username: params[:username])
     if @user.present?
