@@ -11,6 +11,8 @@ class LandingPagesController < ApplicationController
     else
       render file: "#{Rails.root}/public/404.html", status: :not_found
     end
+
+    @links = @landing_page.links.order(:position)
   end
 
 end

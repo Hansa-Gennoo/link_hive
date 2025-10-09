@@ -1,0 +1,9 @@
+<ul>
+  <% @links.each do |link| %>
+    <li>
+      <a href="<%= link.url %>" target="_blank" rel="noopener">
+        <%= link.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>
