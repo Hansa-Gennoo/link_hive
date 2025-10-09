@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get '/u/:username', to: 'landing_pages#show', as: :user_page
+  get '/@:slug', to: 'landing_pages#show', as: :landing_page_public
 
 end
