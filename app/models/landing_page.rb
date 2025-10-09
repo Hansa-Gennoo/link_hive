@@ -3,6 +3,7 @@ class LandingPage < ApplicationRecord
   belongs_to :theme, optional: true
   has_many :links, dependent: :destroy
 
-  extend FriendlyId
-  friendly_id :username, use: :slugged
+
+  # landing_pages table could have 'slug'
+  t.string :slug, null: false, unique: true
 end
