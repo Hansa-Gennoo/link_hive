@@ -37,7 +37,7 @@ class ThemesController < ApplicationController
   private
 
   def theme_params
-    require.params(:theme).permit(:name, :key, :base, :primary_colour, :accent_colour, :background_color, :font_heading, :font_body, :customisable)
+    require.params(:theme).permit(:name, :key, :base, :primary_colour, :accent_colour, :background_colour, :font_heading, :font_body, :customisable)
 
   end
 end

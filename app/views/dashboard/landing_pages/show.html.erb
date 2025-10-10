@@ -1,35 +1,12 @@
 
 
-<div class="dashboard-container">
+<h1><%= @landing_page.title %></h1>
+<p><%= @landing_page.bio %></p>
 
-  <h2>Live Preview</h2>
-  <div class="preview-container">
-    <div class="landing-page <%= @landing_page.theme_name %>">
-      <div class="profile">
-        <%= image_tag @landing_page.avatar_url, alt: current_user.username %>
-        <h1><%= current_user.username %></h1>
-        <p><%= @landing_page.bio %></p>
-      </div>
+<%= link_to "Edit", edit_dashboard_landing_page_path, class: "btn" %>
 
-      <div class="links">
-        <% if @links.exists? %>
-          <% @links.each do |link| %>
-            <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
-          <% end %>
-        <% else %>
-          <h3>Your page is empty right now.
-          Click the button to add link!</h3>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-
-  <%= link_to "Add Link", new_dashboard_landing_page_link_path(@landing_page), class: "btn btn-primary" %>
-
-  <%= render @landing_page.links %>
-
-  <%= link_to "Preview Public Page", landing_page_path(@landing_page.username), target: "_blank", class: "btn btn-secondary" %>
-
-
-</div>
+<ul>
+  <% @links.each do |link| %>
+    <li><%= link_to link.title, link.url %></li>
+  <% end %>
+</ul>
