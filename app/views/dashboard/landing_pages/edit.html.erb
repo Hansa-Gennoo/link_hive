@@ -1,13 +1,10 @@
-<h1>Dashboard::LandingPages#edit</h1>
-<p>Find me in app/views/dashboard/landing_pages/edit.html.erb</p>
-<div class="landing-page-form">
-  <%= simple_form_for @landing_page do |f| %>
-    <%= f.input :username %>
-    <%= f.input :bio %>
-    <%= f.input :theme %>
-    <%= f.input :slug %>
-    <div class="save-btn">
-      <%= f.button :submit %>
+<h3>Choose a theme</h3>
+<div class="themes-grid">
+  <% Theme.all.each do |theme| %>
+    <div class="theme-card <%= 'selected' if @landing_page.theme == theme %>">
+      <p><%= theme.name %></p>
+      <%= button_to "Select", dashboard_landing_page_path(@landing_page, landing_page: { theme_id: theme.id }),
+                     method: :patch, class: "theme-button" %>
     </div>
   <% end %>
 </div>

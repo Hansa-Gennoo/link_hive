@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# Clear existing themes first (optional, but useful for dev
+
+# db/seeds.rb
+# db/seeds.rb
+
+
+
+
+
+
+# db/seeds.rb
