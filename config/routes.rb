@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :dashboard do
-    resources :landing_pages do
+    resources :landing_pages, only: [:show, :edit, :update] do
       resources :links, only: [:new, :create, :edit, :update, :destroy]
     end
 

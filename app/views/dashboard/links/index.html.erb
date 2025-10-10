@@ -1,2 +1,6 @@
 <h1>Dashboard::Links#index</h1>
-
+ <div class="links">
+    <% @links.each do |link| %>
+      <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+    <% end %>
+  </div>
