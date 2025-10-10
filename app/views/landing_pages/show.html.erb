@@ -1,9 +1,13 @@
-<ul>
-  <% @links.each do |link| %>
-    <li>
-      <a href="<%= link.url %>" target="_blank" rel="noopener">
-        <%= link.title %>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<div class="landing-page <%= @landing_page.theme_name %>">
+  <div class="profile">
+    <%= image_tag @landing_page.avatar_url, alt: @user.username %>
+    <h1><%= @user.username %></h1>
+    <p><%= @landing_page.bio %></p>
+  </div>
+
+  <div class="links">
+    <% @links.each do |link| %>
+      <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+    <% end %>
+  </div>
+</div>

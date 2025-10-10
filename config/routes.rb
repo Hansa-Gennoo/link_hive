@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :dashboard do
-    resources :links
-    resources :landing_pages, only: [:show, :edit, :update]
+    resources :landing_pages do
+      resources :links, only: [:new, :create, :edit, :update, :destroy]
+    end
+
   end
   resources :themes
   devise_for :users
