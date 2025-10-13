@@ -1,9 +1,11 @@
-<div class="landing-page <%= @landing_page.theme_name %>">
+<div class="landing-page <%= @landing_page.theme.name %>">
   <div class="profile">
-    <%= image_tag @landing_page.avatar_url, alt: @user.username %>
-    <h1><%= @user.username %></h1>
+    <%#= image_tag @landing_page.avatar_url, alt: @landing_page.user.username %>
+    <h1><%= @landing_page.user.username %></h1>
     <p><%= @landing_page.bio %></p>
   </div>
+
+
 
   <div class="links">
     <% @links.each do |link| %>

@@ -1,11 +1,11 @@
 class Dashboard::LandingPagesController < Dashboard::BaseController
 
 
-  before_action :set_landing_page
+  before_action :set_landing_page, only: [:show, :edit, :update]
 
 
   def show
-    @links = @landing_page.links
+    @links = @landing_page.links.order(:position)
   end
 
 
@@ -32,7 +32,7 @@ class Dashboard::LandingPagesController < Dashboard::BaseController
 
     default_theme = Theme.find_by!(key: "default")
 
-    
+
     @landing_page = current_user.create_landing_page!(
       title: "My Landing Page",
       theme: default_theme

@@ -1,18 +1,26 @@
-class Dashboard::LinksController < ApplicationController
+class Dashboard::LinksController < Dashboard::BaseController
+  before_action :set_landing_page
+
   def index
     @links = Link.all
   end
 
   def new
-    @link = Link.new
+    @landing_page = current_user.landing_page
+    unless @landing_page
+      redirect_to dashboard_root_path, alert: "You need a landing page first."
+      return
+    end
+
+    @link = @landing_page.links.new
   end
 
   def create
-    @link = Link.new
+    @link = @landing_page.links.new(link_params)
     if @link.save
-      redirect_to landing_page_link_path
+      redirect_to dashboard_landing_page_path(@landing_page), notice: "Link created!"
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -34,6 +42,11 @@ class Dashboard::LinksController < ApplicationController
   end
 
   private
+
+  def set_landing_page
+    @landing_page = current_user.landing_page
+  end
+
   def link_params
     params.require(:link).permit(:title, :url, :position)
   end
