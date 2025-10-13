@@ -1,18 +1,28 @@
 class LandingPagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
 
-  def index
-    # This can later render a marketing homepage, sign-up CTA, etc.
-  end
+  # Dashboard shows
+  before_action :authenticate_user!, only: [:dashboard_show]
 
- def show
-    @user = User.find_by(username: params[:username])
-    if @user.present?
-      @landing_page = @user.landing_page
+  def show
+    # Public landing page
+    user = User.friendly.find(params[:username])
+    @landing_page = user.landing_page
+
+    if @landing_page.nil?
+      redirect_to root_path, alert: "Landing page not found."
     else
-      render file: "#{Rails.root}/public/404.html", status: :not_found
+      @links = @landing_page.links
     end
-
-    @links = @landing_page.links.order(:position)
+    rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: "User not found."
   end
+
+  # Optional: dashboard view of landing pages
+  def dashboard_show
+    @landing_page = current_user.landing_page
+  end
+
+
 
 end

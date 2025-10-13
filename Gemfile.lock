@@ -344,7 +344,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass (~> 6.1)
-  friendly_id (~> 5.5)
+  friendly_id (~> 5.5.0)
   importmap-rails
   jbuilder
   pg (~> 1.1)
