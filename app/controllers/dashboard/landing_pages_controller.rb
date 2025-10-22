@@ -1,10 +1,10 @@
 class Dashboard::LandingPagesController < Dashboard::BaseController
-
-
   before_action :set_landing_page, only: [:show, :edit, :update]
 
 
+
   def show
+    @landing_page = LandingPage.find(params[:id])
     @links = @landing_page.links.order(:position)
   end
 

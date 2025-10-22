@@ -7,10 +7,7 @@ class Dashboard::LinksController < Dashboard::BaseController
 
   def new
     @landing_page = current_user.landing_page
-    unless @landing_page
-      redirect_to dashboard_root_path, alert: "You need a landing page first."
-      return
-    end
+    
 
     @link = @landing_page.links.new
   end
