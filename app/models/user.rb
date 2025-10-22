@@ -4,18 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # app/models/user.rb
+
+  has_one :landing_page, dependent: :destroy
+
   after_create :create_default_landing_page
 
   def create_default_landing_page
     default_theme = Theme.first
-    self.landing_pages.create!(title: "My Landing Page", theme: default_theme)
+
+    create_landing_page(title: "My First Landing Page", theme: Theme.first)
   end
 
   extend FriendlyId
   friendly_id :username, use: :slugged
 
-  has_one :landing_page, dependent: :destroy
+
 
   def should_generate_new_friendly_id?
     slug.blank? || will_save_change_to_username?

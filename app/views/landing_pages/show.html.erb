@@ -1,15 +1,21 @@
-<div class="landing-page <%= @landing_page.theme.name %>">
-  <div class="profile">
-    <%#= image_tag @landing_page.avatar_url, alt: @landing_page.user.username %>
-    <h1><%= @landing_page.user.username %></h1>
+
+
+<div class="about">
+  <h2 class="user-info"><%= current_user.username %></h2>
+  <% if @landing_page.bio.present? %>
     <p><%= @landing_page.bio %></p>
-  </div>
+  <% end %>
+</div>
 
 
+<% theme = @landing_page.theme %>
 
-  <div class="links">
-    <% @links.each do |link| %>
-      <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+<div style="background-colour: <%= theme.background_colour %>; colour: <%= theme.primary_colour %>; font-heading: <%= theme.font_heading %>; font-body: <%= theme.font_body %>;" >
+  <h1><%#= @landing_page.title %></h1>
+
+  <ul class="link-box">
+    <% @landing_page.links.each do |link| %>
+      <li><%= link_to link.title, link.url, target: "_blank" %></li>
     <% end %>
-  </div>
+  </ul>
 </div>

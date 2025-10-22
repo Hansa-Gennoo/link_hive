@@ -1,12 +1,20 @@
 
+<div class="about">
+  <h2 class="user-info"><%= current_user.username %></h2>
+  <% if @landing_page.bio.present? %>
+    <p><%= @landing_page.bio %></p>
+    <% end %>
+</div>
 
-<h1><%= @landing_page.title %></h1>
-<p><%= @landing_page.bio %></p>
 
-<%= link_to "Edit", edit_dashboard_landing_page_path, class: "btn" %>
+<% theme = @landing_page.theme %>
 
-<ul>
-  <% @links.each do |link| %>
-    <li><%= link_to link.title, link.url %></li>
-  <% end %>
-</ul>
+<div style="background-colour: <%= theme.background_colour %>; colour: <%= theme.primary_colour %>; font-heading: <%= theme.font_heading %>; font-body: <%= theme.font_body %>;" >
+  <h1><%= @landing_page.title %></h1>
+
+  <ul class="link-box">
+    <% @landing_page.links.each do |link| %>
+      <li><%= link_to link.title, link.url, target: "_blank" %></li>
+    <% end %>
+  </ul>
+</div>
