@@ -1,5 +1,12 @@
 <%= form_with model: @landing_page, url: dashboard_landing_page_path(@landing_page), method: :patch, data: { controller: "feature-form" } do |f| %>
 
+  <!-- Avatar Section -->
+  <div data-feature-form-target="avatar">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, accept: "image/*" %>
+    <%= f.submit "Save Image", data: { action: "click->feature-form#submitAvatar" } %>
+  </div>
+
   <!-- Bio Section -->
   <div data-feature-form-target="bio">
     <%= f.label :bio %>
@@ -14,5 +21,5 @@
     <%= f.submit "Save Theme", data: { action: "click->feature-form#submitTheme" } %>
   </div>
 
-  <!-- Add more sections here as needed -->
+
 <% end %>

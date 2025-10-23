@@ -1,6 +1,7 @@
 class LandingPage < ApplicationRecord
   belongs_to :user
   belongs_to :theme, optional: true
+  has_one_attached :avatar
   has_many :links, -> { order(position: :asc) }, dependent: :destroy
 
   # landing_pages table could have 'slug'
