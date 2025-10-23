@@ -1,20 +1,29 @@
-
 <div class="about">
   <h2 class="user-info"><%= current_user.username %></h2>
   <% if @landing_page.bio.present? %>
     <p><%= @landing_page.bio %></p>
-    <% end %>
+  <% end %>
 </div>
-
 
 <% theme = @landing_page.theme %>
 
-<div style="background-colour: <%= theme.background_colour %>; colour: <%= theme.primary_colour %>; font-heading: <%= theme.font_heading %>; font-body: <%= theme.font_body %>;" >
-  <h1><%= @landing_page.title %></h1>
+<div class="landing-page"
+     style="background-color: <%= theme.background_colour %>;
+            color: <%= theme.primary_colour %>;
+            font-family: <%= theme.font_body %>;">
+
+  <h1 style="font-family: <%= theme.font_heading %>;"><%= @landing_page.title %></h1>
 
   <ul class="link-box">
-    <% @landing_page.links.each do |link| %>
-      <li><%= link_to link.title, link.url, target: "_blank" %></li>
+    <% if @landing_page.links.present? %>
+      <% @landing_page.links.each do |link| %>
+        <li>
+          <%= link_to link.title, link.url, target: "_blank" %>
+        </li>
+      <% end %>
+    <% else %>
+      <h3>Your page is currently empty.</h3>
+      <p>Click the Add Link button to start building!</p>
     <% end %>
   </ul>
 </div>

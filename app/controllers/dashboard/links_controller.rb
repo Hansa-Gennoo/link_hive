@@ -7,7 +7,7 @@ class Dashboard::LinksController < Dashboard::BaseController
 
   def new
     @landing_page = current_user.landing_page
-    
+
 
     @link = @landing_page.links.new
   end
@@ -36,6 +36,13 @@ class Dashboard::LinksController < Dashboard::BaseController
     @link.destroy
 
     redirect_to landing_page_link_path, notice: 'Link was removed.'
+  end
+
+  def reorder
+    params[:ids].each_with_index do |id, index|
+      @landing_page.links.find(id).update(position: index + 1)
+    end
+    head :ok
   end
 
   private

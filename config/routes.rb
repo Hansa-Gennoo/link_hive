@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :landing_pages, only: [:show, :edit, :update] do
-      resources :links, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :links, only: [:index, :new, :create, :edit, :update, :destroy] do
+         patch :reorder, on: :collection
+      end
     end
 
   end

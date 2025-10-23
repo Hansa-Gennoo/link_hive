@@ -1,10 +1,18 @@
-<h3>Choose a theme</h3>
-<div class="themes-grid">
-  <% Theme.all.each do |theme| %>
-    <div class="theme-card <%= 'selected' if @landing_page.theme == theme %>">
-      <p><%= theme.name %></p>
-      <%= button_to "Select", dashboard_landing_page_path(@landing_page, landing_page: { theme_id: theme.id }),
-                     method: :patch, class: "theme-button" %>
-    </div>
-  <% end %>
-</div>
+<%= form_with model: @landing_page, url: dashboard_landing_page_path(@landing_page), method: :patch, data: { controller: "feature-form" } do |f| %>
+
+  <!-- Bio Section -->
+  <div data-feature-form-target="bio">
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+    <%= f.submit "Save Bio", data: { action: "click->feature-form#submitBio" } %>
+  </div>
+
+  <!-- Theme Section -->
+  <div data-feature-form-target="theme" class="hidden">
+    <%= f.label :theme_id, "Select Theme" %>
+    <%= f.collection_select :theme_id, Theme.all, :id, :name %>
+    <%= f.submit "Save Theme", data: { action: "click->feature-form#submitTheme" } %>
+  </div>
+
+  <!-- Add more sections here as needed -->
+<% end %>
