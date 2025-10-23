@@ -1,4 +1,5 @@
-<!-- app/views/layouts/dashboard.html.erb -->
+<!-- app/views/layouts/dashboard.html.erb
+<h4>Hello <%#= current_user.username %></h4> -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,16 +18,21 @@
         <div class="sidebar-header">
           <h2>
             <i class="fa-solid fa-house-user"></i>
-            <%= link_to "Dashboard", dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
+            <%= link_to "Dashboard", dashboard_landing_page_path(@landing_page) %>
           </h2>
 
-          <h4>Hello <%#= current_user.username %></h4>
-          <%= add_link_button(@landing_page) %>
-          <% if @landing_page.bio.present? %>
-            <%= link_to "Edit Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
-          <% else %>
-            <%= link_to "Add Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
-          <% end %>
+
+
+          <div class="side-btn">
+
+            <%= link_to "Add Link", new_dashboard_landing_page_link_path(@landing_page), class: 'btn-primary' %>
+            <% if @landing_page.bio.present? %>
+              <%= link_to "Edit Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
+            <% else %>
+              <%= link_to "Add Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
+            <% end %>
+
+          </div>
         </div>
         <nav class="sidebar-nav">
           <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "signout" %>
