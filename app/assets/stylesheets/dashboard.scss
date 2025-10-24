@@ -44,6 +44,7 @@ h2 a {
   }
 }
 
+
 .side-btn a,
 .side-btn button {
   color: $primary-color;
@@ -56,15 +57,21 @@ h2 a {
 
 }
 
-.sode-btn a:hover,
+.side-btn a:hover,
 .side-btn button:hover {
-  background: $line-color;
+  background-color: $line-color;
+}
+
+.side-btn a:visited,
+.side-btn button:visited {
+  background-color: $line-color;
 }
 
 .side-btn {
   display: flex;
   flex-direction: column;
   margin-top: 1.6rem;
+  gap: 0.2rem;
 }
 
 .sidebar-nav {
@@ -91,8 +98,7 @@ h2 a {
 /* Sign out button */
 .sidebar-nav .signout {
   color: #b91c1c;
-  font-weight: 500;
-  text-align: center;
+  font-weight: 400;
 }
 
 /* ===== Main Content ===== */

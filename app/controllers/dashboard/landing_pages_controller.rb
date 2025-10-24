@@ -15,10 +15,17 @@ class Dashboard::LandingPagesController < Dashboard::BaseController
 
 
   def update
-    if @landing_page.update(landing_page_params)
-      redirect_to dashboard_landing_page_path, notice: "Landing page updated successfully."
+    @landing_page = current_user.landing_page
+
+    # Attach avatar manually if present
+    if params[:landing_page][:avatar].present?
+      @landing_page.avatar.attach(params[:landing_page][:avatar])
+    end
+
+    if @landing_page.update(landing_page_params.except(:avatar))
+      redirect_to dashboard_landing_page_path(@landing_page), notice: "Landing page updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +47,7 @@ class Dashboard::LandingPagesController < Dashboard::BaseController
   end
 
   def landing_page_params
-    params.require(:landing_page).permit(:title, :bio, :theme_id)
+    params.require(:landing_page).permit(:title, :bio, :theme_id, :avatar)
   end
 
 end

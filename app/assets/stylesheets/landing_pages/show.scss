@@ -5,6 +5,7 @@ $accent-color: #A78BFA;
 $text-color: #FFFFFF;
 $link-hover-color: #8B5CF6;
 $card-color: #F7F7F8;
+$line-color: #E5E5E5;
 
 
 /* --- Overall Page Layout --- */
@@ -24,8 +25,17 @@ $card-color: #F7F7F8;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: $text-color;
+  background: none;
 }
+
+.avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none;
+}
+
 
 /* --- About Section (Refined Username Styling) --- */
 .user-info {
@@ -101,4 +111,31 @@ $card-color: #F7F7F8;
 .link-box a:active {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.link-box li a {
+  position: relative;             /* allows absolute positioning inside */
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05),
+              0 8px 20px rgba(0, 0, 0, 0.08);
+  font-weight: 500;
+  text-align: center;             /* centers the text */
+}
+
+.link-box li a .link-text {
+  display: inline-block;
+}
+
+.link-box li a i {
+  position: absolute;
+  right: 1rem;                    /* move to the right edge */
+  top: 50%;
+  transform: translateY(-50%);    /* vertically center the icon */
+  font-size: 1.1rem;
+  opacity: 0.7;
 }
