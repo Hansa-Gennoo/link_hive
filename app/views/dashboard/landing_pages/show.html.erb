@@ -7,6 +7,10 @@
             font-family: <%= theme.font_body %>;">
 
   <div class="about">
+  <% if @landing_page.avatar.attached? %>
+    <%= image_tag @landing_page.avatar, class: "avatar-preview" %>
+  <% end %>
+
     <h2 class="user-info"><%= current_user.username %></h2>
     <% if @landing_page.bio.present? %>
       <p><%= @landing_page.bio %></p>
@@ -18,9 +22,14 @@
     <% if @landing_page.links.present? %>
       <% @landing_page.links.each do |link| %>
         <li>
-          <%= link_to link.title, link.url, target: "_blank" %>
+          <%= link_to link.url, target: "_blank" do %>
+            <span><%= link.title %></span>
+            <i class="fa-solid fa-ellipsis"></i>
+          <% end %>
         </li>
       <% end %>
+
+      
     <% else %>
       <h3>Your page is currently empty.</h3>
       <p>Click the Add Link button to start building!</p>
