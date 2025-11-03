@@ -10,7 +10,8 @@ class Dashboard::LandingPagesController < Dashboard::BaseController
 
 
   def edit
-    # @landing_page is already set
+    @landing_page = current_user.landing_page
+    render partial: "form", locals: { landing_page: @landing_page } if turbo_frame_request?
   end
 
 
@@ -47,7 +48,7 @@ class Dashboard::LandingPagesController < Dashboard::BaseController
   end
 
   def landing_page_params
-    params.require(:landing_page).permit(:title, :bio, :theme_id, :avatar)
+    params.require(:landing_page).permit(:title, :bio, :theme_id, :avatar, links_attributes: [:id, :title, :url, :_destroy])
   end
 
 end

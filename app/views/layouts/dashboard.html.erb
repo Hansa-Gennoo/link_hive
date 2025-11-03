@@ -12,7 +12,7 @@
   </head>
 
   <body class="dashboard">
-    <div class="dashboard-layout">
+    <div class="dashboard-layout" data-controller="editor">
 
       <aside class="sidebar">
         <div class="sidebar-header">
@@ -25,12 +25,11 @@
 
           <div class="side-btn">
 
-            <%= link_to "Add Link", new_dashboard_landing_page_link_path(@landing_page), class: 'btn-primary' %>
-              <% if @landing_page.bio.present? %>
-                <%= link_to "Edit Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
-              <% else %>
-                <%= link_to "Add Bio", edit_dashboard_landing_page_path(@landing_page), class: 'btn-primary' %>
-            <% end %>
+            <%= link_to "Edit Profile", edit_dashboard_landing_page_path(@landing_page), class: "btn-primary", data: { action: "click->editor#toggle" } %>
+            <%= link_to "Add Link", new_dashboard_landing_page_link_path(@landing_page, @link), class: "btn-secondary" %>
+            <%= link_to "Manage Links", dashboard_landing_page_links_path(@landing_page), class: "btn-secondary" %>
+
+
 
           </div>
         </div>

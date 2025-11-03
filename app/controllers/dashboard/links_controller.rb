@@ -28,14 +28,14 @@ class Dashboard::LinksController < Dashboard::BaseController
   def update
     @link = Link.find(params[:id])
     @link.update(link_params)
-    redirect_to landing_page_link_path
+    redirect_to dashboard_landing_page_link_path(@landing_page)
   end
 
   def destroy
     @link = Link.find(params[:id])
     @link.destroy
 
-    redirect_to landing_page_link_path, notice: 'Link was removed.'
+    redirect_to dashboard_landing_page_link_path(@landing_page), notice: 'Link was removed.'
   end
 
   def reorder

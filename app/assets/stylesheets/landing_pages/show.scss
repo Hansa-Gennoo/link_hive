@@ -139,3 +139,13 @@ $line-color: #E5E5E5;
   font-size: 1.1rem;
   opacity: 0.7;
 }
+
+@media (max-width: 480px) {
+  .user-info {
+    font-size: 1.8rem;
+  }
+
+  .link-box {
+    max-width: 90%;
+  }
+}
