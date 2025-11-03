@@ -1,6 +1,35 @@
-<h1>Dashboard::Links#index</h1>
- <div class="links">
-    <% @links.each do |link| %>
-      <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
-    <% end %>
-  </div>
+<h1 class="links-title">Your Links</h1>
+
+<div class="links-container">
+  <% @landing_page.links.each do |link| %>
+    <div class="link-item">
+      <div class="link-content">
+        <%= link_to link.url, target: "_blank", class: "link-display" do %>
+          <span class="link-title"><%= link.title %></span>
+
+        <% end %>
+      </div>
+
+      <div class="link-actions">
+        <%= link_to edit_dashboard_landing_page_link_path(@landing_page, link),
+                    class: "edit-link", title: "Edit" do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+
+        <%= link_to dashboard_landing_page_link_path(@landing_page, link),
+                    method: :delete,
+                    data: { turbo_confirm: "Are you sure you want to delete this link?" },
+                    class: "delete-link",
+                    title: "Delete" do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="add-link-container">
+  <%= link_to "Add New Link",
+      new_dashboard_landing_page_link_path(@landing_page),
+      class: "btn-add-link" %>
+</div>

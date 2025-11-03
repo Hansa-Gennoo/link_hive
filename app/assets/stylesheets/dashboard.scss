@@ -74,6 +74,16 @@ h2 a {
   gap: 0.2rem;
 }
 
+.btn-toggle a {
+  color: $primary-color;
+  font-weight: 300;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  gap: 1rem;
+}
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -148,4 +158,22 @@ h2 a {
 .content p {
   margin-bottom: 1rem;
   color: $secondary-color;
+}
+
+.landing-page-editor {
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.landing-page-editor .landing-page {
+  padding: 2rem 1rem;
+  min-height: auto;
+  justify-content: flex-start;
+}
+
+body.dashboard {
+  overflow-x: hidden;
+  background: #fafafa;
 }

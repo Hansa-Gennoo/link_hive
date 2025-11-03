@@ -1,0 +1,42 @@
+# app/views/dashboard/landing_pages/_landing_page_content.html.erb
+<div class="landing-page-content" data-controller="editable">
+  <div class="avatar-section">
+    <% if @landing_page.avatar.attached? %>
+      <%= image_tag @landing_page.avatar.variant(resize_to_fill: [120, 120]), class: "avatar" %>
+    <% end %>
+
+    <% if @edit_mode %>
+      <%= form_with model: @landing_page, url: dashboard_landing_page_path(@landing_page), method: :patch, html: { multipart: true, class: "inline-form" } do |f| %>
+        <%= f.file_field :avatar, accept: "image/*" %>
+        <%= f.submit "Save", class: "btn-save" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="bio-section">
+    <% if @edit_mode %>
+      <%= form_with model: @landing_page, url: dashboard_landing_page_path(@landing_page), method: :patch, class: "inline-form" do |f| %>
+        <%= f.text_area :bio, rows: 3 %>
+        <%= f.submit "Save", class: "btn-save" %>
+      <% end %>
+    <% else %>
+      <p><%= @landing_page.bio %></p>
+    <% end %>
+  </div>
+
+  <div class="links-section">
+    <% @landing_page.links.each do |link| %>
+      <div class="link-item">
+        <% if @edit_mode %>
+          <%= form_with model: link, url: dashboard_landing_page_link_path(@landing_page, link), method: :patch, class: "inline-form" do |f| %>
+            <%= f.text_field :title %>
+            <%= f.text_field :url %>
+            <%= f.submit "Save", class: "btn-save" %>
+          <% end %>
+        <% else %>
+          <%= link_to link.title, link.url, target: "_blank" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
